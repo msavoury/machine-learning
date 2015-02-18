@@ -2,7 +2,7 @@
 <html lang="en" ng-app="watchApp" ng-controller="watchAppCtrl">
 <head>
   <meta charset="utf-8">
-  <title>Angular Training</title>
+  <title>rateawatch</title>
   <meta name="description" content="Machine Learning">
   <meta name="author" content="@marcossavoury">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -33,10 +33,9 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-
     <div class="container">
-
-      <div class="main-area">
+      <div class="main-area" >
+		<div id="watch-area" ng-show="currentWatchIndex < watches.length">
         <h1 class="fonty">Rate This Watch</h1>
 		<img ng-src="[[currentWatch().imageLink]]" />
 		<div class="controls">
@@ -51,16 +50,17 @@
   				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 			</button>
 		</div>
-		<!--
-		<div class="progress">
-			<div class="progress-bar progress-bar-success progress-bar-striped" 
-			role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
-				<span class="sr-only">40% Complete (success)</span>
-			</div>
-		</div>
-		-->
+		<!-- <div class="progress"> <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 30%"> <span class="sr-only">40% Complete (success)</span> </div> </div> -->
 		<span class="sub">[[currentWatchIndex + 1]] of [[watches.length]]</span>
-      </div>
+		</div>
+	    <div  id="username" ng-show="currentWatchIndex >= watches.length">
+		  <h1>Pick a Username</h1>
+		  <input ng-model="username" type="text" class="form-control" style="width:50%; margin: auto; text-align:center;" />
+		  <br />
+		  <button ng-show="username.length != 0" ng-click="postRatings()" class="btn btn-primary">Next</button>
+	    </div>
+      </div> <!-- end watch-area -->
+	[[response]]
     </div><!-- /.container -->
     <!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -96,7 +96,6 @@
 		  </div>
 		  <div class="modal-body">
 			The purpose of this site is to collect data in order to practice using some of the machine learning recommendation algorithms that I have been studying. For more information, <a href="http://www.amazon.com/Programming-Collective-Intelligence-Building-Applications/dp/0596529325">check out the book!</a> 
-			
 			<br />
 			<br />
 			Copyright 2015 - Marcos Savoury
@@ -118,6 +117,8 @@
   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular-animate.js"></script>
+
   <script src="js/controller.js"></script>
   <script>
 	$(document).ready(function() {
