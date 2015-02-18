@@ -44,11 +44,8 @@
   				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 			</button>
 			<div class="btn-group" role="group" aria-label="...">
-			  <button type="button" class="btn btn-default">1</button>
-			  <button type="button" class="btn btn-default">2</button>
-			  <button type="button" class="btn btn-default">3</button>
-			  <button type="button" class="btn btn-default">4</button>
-			  <button type="button" class="btn btn-default">5</button>
+			  <button ng-repeat="i in ratingOptions" type="button" 
+			  	class="btn btn-default" ng-class="currentWatchMatchesRating(i) ? 'btn-primary':''" ng-click="setWatchRating(i)">[[i]]</button>
 			</div>
 			<button type="button" class="btn btn-default" ng-click="nextWatch()" aria-label="Left Align">
   				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>

@@ -28,6 +28,14 @@ watchApp.controller('watchAppCtrl', ['$scope', 'watchService', function ($scope,
 		$scope.currentWatch = function() {return $scope.watches[$scope.currentWatchIndex]};
 	}); 
 
+	$scope.setWatchRating = function(rating) {
+		$scope.currentWatch().rating = rating;
+	};
+
+	$scope.currentWatchMatchesRating = function(i) {
+		return $scope.currentWatch().rating == i;
+	}
+
 	$scope.nextWatch = function() {
 		if ($scope.currentWatchIndex <= $scope.watches.length - 2) {
 			$scope.currentWatchIndex++;
