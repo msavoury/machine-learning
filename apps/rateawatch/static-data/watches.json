@@ -1,8 +1,17 @@
 [
 	{
-		id: "watch1",
-		imageLink: "/images/stuff",
-		rating: 0
+		"id": "skagen1",
+		"imageLink": "/images/skagen1.jpg",
+		"rating": 0
+	},
+	{
+		"id": "mvmt1",
+		"imageLink": "/images/mvmt1.jpg",
+		"rating": 0
+	},
+	{
+		"id": "jiusko",
+		"imageLink": "/images/jiusko.jpg",
+		"rating": 0
 	}
-
 ]
