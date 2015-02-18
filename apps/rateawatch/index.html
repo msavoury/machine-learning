@@ -42,6 +42,8 @@
 			<button type="button" class="btn btn-default" ng-click="previousWatch()"aria-label="Left Align">
   				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 			</button>
+			<select ng-model="currentWatch().rating" ng-options="i for i in ratingOptions">
+			</select>
 			<button type="button" class="btn btn-default" ng-click="nextWatch()" aria-label="Left Align">
   				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 			</button>

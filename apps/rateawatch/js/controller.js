@@ -21,6 +21,7 @@ watchApp.controller('watchAppCtrl', ['$scope', 'watchService', function ($scope,
 	$scope.watches = [];
 	$scope.currentWatch = function(){return{}};
 	$scope.currentWatchIndex = 0;
+	$scope.ratingOptions = [1,2,3,4,5];
 
 	watchService.getWatches().then(function(d){
 		$scope.watches = d;
