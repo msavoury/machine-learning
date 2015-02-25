@@ -18,7 +18,12 @@ watchApp.factory('watchService', function($http) {
 watchApp.factory('postService', function($http) {
 	var svc = {};
 	svc.postRatings = function(postObject) {
+        /*
 		var promise = $http.post('/api/rating', postObject).then(function(response) {
+			return response.data;	
+		})	
+        */
+		var promise = $http.get('/static-data/results.json', postObject).then(function(response) {
 			return response.data;	
 		})	
 		return promise;
@@ -34,7 +39,12 @@ watchApp.controller('watchAppCtrl', ['$scope', 'watchService','postService' , fu
 	$scope.currentWatchIndex = 0;
 	$scope.ratingOptions = [1,2,3,4,5];
 	$scope.username = "";
-	$scope.response = "repsonse";
+	$scope.response = "response";
+	$scope.isResultReady = false;
+	$scope.results = { 
+					   "users": { "similar" : [ {"username":"shawn", "score": 12},{"username":"shawn", "score": 14}] },
+					   "ratings" : { "mvmt1" : {"avg": 3.1, "high": 2.7}, "mvmt1" : {"avg": 3.1, "high": 2.7}} 
+                     };
 
 	watchService.getWatches().then(function(d){
 		$scope.watches = d;
@@ -49,9 +59,8 @@ watchApp.controller('watchAppCtrl', ['$scope', 'watchService','postService' , fu
 		postObject.username = $scope.username;
 		postObject.ratings = $scope.watches;
 		postService.postRatings(postObject).then(function(response){ 
-			console.log("response is here");
-			console.log(response);
 			$scope.response = response;
+			$scope.isResultReady = true;
 		});
 	};
 	
@@ -71,6 +80,16 @@ watchApp.controller('watchAppCtrl', ['$scope', 'watchService','postService' , fu
 		if ($scope.currentWatchIndex > 0) {
 			$scope.currentWatchIndex--;
 		}
+	}
+
+	$scope.getSimilarUsers = function() {
+		return $scope.results['users']['similar'];
+
+	}
+
+	$scope.getRatingsForWatchId = function(id) {
+		return $scope.results['ratings'][id] || "";
+
 	}
 }]);
 
